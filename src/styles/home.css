@@ -1,0 +1,38 @@
+.home__page {
+  background-image: url('../images/background_black.png');
+  background-size: cover;
+  min-height: 100vh;
+  background-attachment: fixed;
+  flex-direction: column;
+  display: flex;
+  color: white;
+  font-weight: 700;
+}
+
+.home__page__header {
+  position: fixed;
+  background-color: rgba(83, 81, 81, 0.61);
+  width: 100%;
+}
+
+.home__page__header div {
+  display: flex;
+  justify-content: space-between;
+  padding: 16px 96px 16px 96px;
+  align-items: center;
+  margin: auto;
+  max-width: 1366px;
+}
+
+.logout__icon {
+  cursor: pointer;
+  transition: .3s;
+  position: relative;
+  font-size: 24PX;
+  padding-bottom: 0px;
+}
+
+.logout__icon:hover {
+  opacity: 80%;
+  padding-bottom: 5px;
+}

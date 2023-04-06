@@ -1,0 +1,136 @@
+.notifications__section {
+  width: 100%;
+  max-width: 1250px;
+  margin: 72px auto;
+}
+
+.update_button {
+  cursor: pointer;
+  transition: .3s;
+  position: relative;
+  font-size: 24PX;
+  padding-bottom: 0px;
+  top: 0px;
+}
+
+.align__buttons {
+  display: flex;
+  justify-content: center;
+  align-items: center ;
+}
+
+.teste {
+  max-width: 20px !important;
+  background-color: red;
+  display: flex;
+}
+
+.update_button:hover {
+  opacity: 80%;
+  top: -3px;
+}
+.rotate {
+  animation: spin 2s infinite linear;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+.messages__div {
+  display: flex;
+  background-color: rgba(107, 107, 107, 0.322);
+  padding: 30px;
+  border-radius: 16px;
+  width: 330px;
+  min-height: 430px;
+  max-height: 430px;
+  word-wrap: break-word;
+  flex-direction: column;
+  position: relative;
+  overflow: hidden;
+  justify-content: space-between;
+  gap: 24px;
+}
+
+.messages__div button{
+  background-color: black;
+  color: white;
+  font-weight: 800;
+  border: none;
+  border-radius: 16px;
+  padding: 8px;
+  cursor: pointer;
+  width: 100%;
+  transition: .3s;
+  position: relative;
+  top: 0px;
+}
+
+.messages__div button:disabled{
+  background-color: black;
+  color: white;
+  font-weight: 800;
+  border: none;
+  border-radius: 16px;
+  padding: 8px;
+  cursor: pointer;
+  width: 100%;
+  transition: .3s;
+  position: relative;
+  top: 0px;
+  opacity: 50%;
+}
+
+.messages__div input {
+  padding: 8px;
+}
+
+.messages__div button:hover {
+  background-color: rgb(255, 255, 255);
+  color: rgb(12, 12, 12);
+}
+
+.notes__div {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 24px;
+}
+
+.table__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.title__text {
+  font-size: 20px;
+}
+
+.paragraph__text {
+  font-size: 12px;
+}
+
+.delete__confirm {
+  position: absolute;
+  background-color: rgb(87, 85, 85);
+  top: 0;
+  left: 0;
+  min-height: 450px;
+  max-height: 450px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 24px;
+}
+
+.buttons {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.buttons button {
+  height: 60px;
+}
