@@ -3,14 +3,13 @@ import AppContext from '../context/AppContext';
 import { deleteMessage } from '../api/messages';
 
 const DeleteButton = ({ message, setLoading, editOn, loading }) => {
-  const { messages, setMessages, userGlobalState } = useContext(AppContext);
+  const { messages, setMessages } = useContext(AppContext);
   const [confirm, setConfirm] = useState(false);
   const [confirmInput, setConfirmInput] = useState('');
   
   const handleDelete = async () => {
     setLoading(true);
     const response = await deleteMessage(String(message.id), localStorage.getItem("token"));
-    console.log(response.data)
     if (response && response.data && response.data.length === 0) {
       const newMessageState = messages.filter((previousMessage) => String(previousMessage.id) !== String(message.id));
       setMessages(newMessageState);

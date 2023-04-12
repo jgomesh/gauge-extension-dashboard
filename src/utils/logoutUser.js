@@ -2,7 +2,7 @@ import { logout } from "../api/login";
 
 const logoutUser = async (setUserGlobalState , navigate, userGlobalState, loading, setLoading) => {
   setLoading(true);
-  const response  = await logout(userGlobalState.token).catch((error) => {
+  await logout(userGlobalState.token).catch((error) => {
     console.log(error.message);
     localStorage.removeItem("user_logged");
     localStorage.removeItem("token");

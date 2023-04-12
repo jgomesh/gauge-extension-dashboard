@@ -8,15 +8,15 @@ const useGetMessages = (setFunction, getFunction, data = undefined, token, setLo
       if (response.data && response.data.length >= 1) {
         setFunction(!response.data ? [] : response.data);
         setLoading(false);
+      } else {
+        logout(token);
+        localStorage.removeItem("token");
+        localStorage.removeItem("user_logged");
+        navigate("/");
+        setLoading(false);
       }
     }
-    getData().catch(async error => {
-      logout(token);
-      localStorage.removeItem("token");
-      localStorage.removeItem("user_logged");
-      navigate("/");
-      setLoading(false);
-    });
+    getData();
   }, [])
 }
 
