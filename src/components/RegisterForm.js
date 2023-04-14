@@ -20,7 +20,9 @@ const RegisterForm = () => {
   useEffect(() => {
     if (
       formValues.title &&
+      formValues.title.length >= 20 &&
       formValues.message &&
+      formValues.message.length >= 50 &&
       formValues.type &&
       formValues.start_date &&
       formValues.end_date

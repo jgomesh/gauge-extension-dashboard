@@ -1,10 +1,19 @@
-import React, { useState, useContext } from 'react';
+import React, { useState, useContext, useEffect } from 'react';
 import AppContext from '../context/AppContext';
 import { editMessage } from '../api/messages';
 
 const EditOnButton = ({ message, editedMessage, setEditOn, editOn }) => {
   const { userGlobalState, messages, setMessages } = useContext(AppContext);
   const [loading, setLoading] = useState(false);
+  const [disabled, setDisabled] = useState(true);
+
+  useEffect(() => {
+    if (editedMessage.title.length >= 20 && editedMessage.message.length >= 50) {
+      setDisabled(false);
+    } else {
+      setDisabled(true);
+    }
+  }, [editedMessage]);
 
   const handleSaveEdit = async () => {
     setLoading(true);
@@ -24,18 +33,24 @@ const EditOnButton = ({ message, editedMessage, setEditOn, editOn }) => {
     }, 2000)
   };
 
+  const handleCancelClick = () => {
+    setEditOn(false);
+  };
+
   return (
     <>
-     
-        {editOn ? (
-          <>
-            {!loading ? <button onClick={handleSaveEdit}>Salvar</button> : <button>Loading...</button>}
-            {!loading ? <button onClick={() => setEditOn(false)}>Cancelar</button> : <button>Loading...</button>}
-          </>
-        ) : (
-          (loading? <button>Loading...</button> : <button onClick={() => setEditOn(true)}>Editar</button>)
-        )}
-      
+      {editOn ? (
+        <>
+          {!loading ? (
+            <>
+              <button onClick={handleSaveEdit} disabled={disabled}>Salvar</button>
+              <button onClick={handleCancelClick}>Cancelar</button>
+            </>
+          ) : <button>Loading...</button>}
+        </>
+      ) : (
+        <button onClick={() => setEditOn(true)} disabled={loading}>Editar</button>
+      )}
     </>
   );
 };
