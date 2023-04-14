@@ -15,6 +15,7 @@ const Login = () => {
   const [validInputs, setValidInputs] = useState(false);
   const navigate = useNavigate();
   useLoginCheck(setUserGlobalState, navigate);
+
   return (
     <section className='login__page'>
       <form className='login__page__form'>

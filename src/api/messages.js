@@ -95,10 +95,10 @@ export const desprioritizeMessage = async ( token) => {
 			Authorization: `Bearer ${token}`,
 		},
 	})
-.then(response => response)
-.catch(error => {
+	.then(response => response)
+	.catch(error => {
 	console.log(error.message);
 	return error;
-});
-return response.data
+	});
+	return response.data
 }
