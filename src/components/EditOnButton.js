@@ -9,7 +9,7 @@ const EditOnButton = ({ message, editedMessage, setEditOn, editOn }) => {
   const handleSaveEdit = async () => {
     setLoading(true);
     setTimeout(async () => {
-      const response = await editMessage(editedMessage, String(message.id), localStorage.getItem("token"));
+      const response = await editMessage(editedMessage, String(message.id), JSON.parse(localStorage.getItem("token")).value);
       if(response && response.message === "Mensagem atualizada com sucesso!") {
         const newMessagesState = messages.map((previousMessage => {
           if(String(previousMessage.id) === String(message.id)) {
@@ -23,6 +23,7 @@ const EditOnButton = ({ message, editedMessage, setEditOn, editOn }) => {
       setLoading(false)
     }, 2000)
   };
+
   return (
     <>
      

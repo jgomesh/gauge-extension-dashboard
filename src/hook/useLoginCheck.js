@@ -1,18 +1,26 @@
 import { useEffect } from "react";
 
+function checkExpiration() {
+  const token = JSON.parse(localStorage.getItem('token'));
+
+  if (token && new Date().getTime() > token.expirationTime) {
+    localStorage.removeItem('token');
+  }
+}
+
 const useLoginCheck = (setUserGlobalState, navigate) => {
   useEffect(() => {
-      const token = localStorage.getItem('token');
+      checkExpiration();
+      const token = JSON.parse(localStorage.getItem('token'));
       const user_logged = JSON.parse(localStorage.getItem('user_logged'));
-      if(token && !!token.length) {
-        setUserGlobalState({token, user_logged});
+      if(token && token.value && !!token.value.length) {
+        setUserGlobalState({token: token.value, user_logged});
         if(window.location.pathname) {
-          setUserGlobalState({token, user_logged});
+          setUserGlobalState({token: token.value, user_logged});
           navigate('/home')
         }
         return 
       }
-      console.log(window.location.pathname)
       navigate('/')
     }, [])
 }

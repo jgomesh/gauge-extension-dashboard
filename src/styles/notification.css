@@ -33,6 +33,24 @@
   animation: spin 2s infinite linear;
 }
 
+.pinned_div {
+  position: absolute;
+  display: flex;
+  color: black;
+  right: 8px;
+  top: 8px;
+  cursor: pointer;
+  opacity: 100%;
+  transition: .3s
+}
+
+.pinned_div:hover {
+  opacity: 70%;
+}
+
+.pinned_icon {
+  width: 25px;
+}
 @keyframes spin {
   0% { transform: rotate(0deg); }
   100% { transform: rotate(360deg); }

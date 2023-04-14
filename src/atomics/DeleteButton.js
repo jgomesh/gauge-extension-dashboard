@@ -9,7 +9,7 @@ const DeleteButton = ({ message, setLoading, editOn, loading }) => {
   
   const handleDelete = async () => {
     setLoading(true);
-    const response = await deleteMessage(String(message.id), localStorage.getItem("token"));
+    const response = await deleteMessage(String(message.id), JSON.parse(localStorage.getItem("token")).value);
     if (response && response.data && response.data.length === 0) {
       const newMessageState = messages.filter((previousMessage) => String(previousMessage.id) !== String(message.id));
       setMessages(newMessageState);

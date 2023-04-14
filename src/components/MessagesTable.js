@@ -10,8 +10,8 @@ import { useNavigate } from 'react-router-dom';
 const MessagesTable = ({ messages }) => {
   const { setMessages, userGlobalState } = useContext(AppContext);
   const [loading, setLoading] = useState(false);
-  useRequest(setMessages, loading, setLoading, getMessagesActive, userGlobalState.token);
   const navigate = useNavigate();
+  useRequest(setMessages, loading, setLoading, getMessagesActive, userGlobalState.token, navigate);
   useGetMessages(setMessages, getMessagesActive, undefined, userGlobalState.token, setLoading, navigate);
 
   return (

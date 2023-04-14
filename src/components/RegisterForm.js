@@ -35,10 +35,6 @@ const RegisterForm = () => {
     event.preventDefault();
     setLoading(true);
     const response = await createMessage(formValues, userGlobalState.token);
-    console.log("RESPONSE HERE")
-    console.log(response.data)
-    console.log(response.message)
-    console.log(response.message === "Cadastro realizado com sucesso")
     if(response.message === "Cadastro realizado com sucesso") {
       const newMessagesState = [ ...messages, { ...response.data, end_date: response.data.endDate }];
       setMessages(newMessagesState);
