@@ -63,8 +63,10 @@ const TableMessage = ({ message }) => {
   };
   const today = new Date();
   const startDate = new Date(String(message.startDate));
-  const endDate = new Date(String(message.endDate)); 
-  const shouldRenderIcon =  startDate <= today && endDate >= today; // verifica se a data atual está entre a data de início e a data de fim do message
+  const endDate = new Date(String(message.endDate));
+  endDate.setDate(endDate.getDate() + 1); // adiciona um dia à data de endDate
+  const shouldRenderIcon = startDate <= today && endDate >= today;
+  
   return (
     <div className="messages__div">
         {shouldRenderIcon && (
