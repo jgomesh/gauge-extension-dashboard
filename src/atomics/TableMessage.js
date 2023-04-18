@@ -55,17 +55,37 @@ const TableMessage = ({ message }) => {
   
           setMessages(newMessagesState);
         }
+        setPinnedLoading(false);
       }
     } catch (error) {
       setPinnedLoading(false);
     }
   };
-
+  const today = new Date();
+  const startDate = new Date(String(message.startDate));
+  const endDate = new Date(String(message.endDate)); 
+  const shouldRenderIcon =  startDate <= today && endDate >= today; // verifica se a data atual está entre a data de início e a data de fim do message
   return (
     <div className="messages__div">
-        <div className='pinned_div' onClick={pinnedLoading ? () => {} : () => changePriority()}>
-          {pinnedLoading? <section className='loader'></section> : <img className={'pinned_icon'} src={!message.priority ? require("../images/unpinned.png") : require("../images/pinned.png")}/>}
-        </div>
+        {shouldRenderIcon && (
+          <div
+            className="pinned_div"
+            onClick={pinnedLoading ? () => {} : () => changePriority()}
+          >
+            {pinnedLoading ? (
+              <section className="loader"></section>
+            ) : (
+              <img
+                className={"pinned_icon"}
+                src={
+                  !message.priority
+                    ? require("../images/unpinned.png")
+                    : require("../images/pinned.png")
+                }
+              />
+            )}
+          </div>
+        )}
         <EditInput
           type="text"
           name="title"
@@ -93,7 +113,7 @@ const TableMessage = ({ message }) => {
           className='paragraph__text'
           value={editedMessage.start_date}
           editOn={editOn}
-          content={message.startDate}
+          content={message.startDate ? message.startDate.replace(/^(\d{4})-(\d{2})-(\d{2})$/, '$3/$2/$1'): ""}
           handleInputChange={(event) => handleInputChange(event, setEditedMessage)}
         />
         <EditInput
@@ -103,7 +123,7 @@ const TableMessage = ({ message }) => {
           placeholder='Data Final: '
           value={editedMessage.end_date}
           editOn={editOn}
-          content={message.endDate}
+          content={message.endDate ? message.endDate.replace(/^(\d{4})-(\d{2})-(\d{2})$/, '$3/$2/$1') : ""}
           handleInputChange={(event) => handleInputChange(event, setEditedMessage)}
         />
         <EditSelect
