@@ -11,7 +11,7 @@ const MessagesTableBody = ({ loading, messages }) => {
           </div>
           ) : (
             <>
-              {messages && messages.map((message, index) => (
+              {(messages && messages.length !== 0) && messages.map((message, index) => (
                   <TableMessage key={`Table-Item-${index}`} message={message}/>
               ))}
               <RegisterForm />
